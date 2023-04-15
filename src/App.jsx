@@ -86,7 +86,7 @@ class App extends Component {
                 voterid: this.state.voterid,
                 password: this.state.password
             };
-            axios.post('http://localhost:4000/app/signup', registered)
+            axios.post('http://0.0.0.0:4000/app/signup', registered)
                 .then(res => console.log(res.data))
                 .catch(err => console.log(err));
             this.setState({
