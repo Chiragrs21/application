@@ -170,12 +170,12 @@ class App extends Component {
                         <div className="line mb-4"></div>
                         <div className="display7">
                         <div className="form-group">
-                            <label>Full Name:</label>
+                            <label>First Name:</label>
                             <input type="text" placeholder=''  className={`form-control ${errors.fullName ? 'is-invalid' : ''}`} name="fullName" value={this.state.fullName} onChange={this.handleChange} />
                             {errors.fullName && <div className="invalid-feedback">{errors.fullName}</div>}
                         </div>
                         <div className="form-group">
-                            <label>Username:</label>
+                            <label>Last Name:</label>
                             <input type="text" placeholder=""  className={`form-control ${errors.username ? 'is-invalid' : ''}`} name="username" value={this.state.username} onChange={this.handleChange} />
                             {errors.username && <div className="invalid-feedback">{errors.username}</div>}
                         </div>
