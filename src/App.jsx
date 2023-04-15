@@ -200,7 +200,7 @@ class App extends Component {
                         </div>
                         <div className="form-group">
                             <label>Aadhar Card Number:</label>
-                            <input type="text" className={`form-control ${errors.adharrcard ? 'is-invalid' : ''}`} name="adharrcard" value={this.state.adharrcard} onChange={this.handleChange} />
+                            <input type="text" placeholder='4334-4567-4785'className={`form-control ${errors.adharrcard ? 'is-invalid' : ''}`} name="adharrcard" value={this.state.adharrcard} onChange={this.handleChange} />
                             {errors.adharrcard && <div className="invalid-feedback">{errors.adharrcard}</div>}
                          </div>
                          </div>
@@ -215,12 +215,12 @@ class App extends Component {
                           </div>
                         <div className="form-group">
                              <label>Registration Number:</label>
-                             <input type="text" className={`form-control ${errors.registration ? 'is-invalid' : ''}`} name="registration" value={this.state.registration} onChange={this.handleChange} />
+                             <input type="text" placeholder='XXXXXX'className={`form-control ${errors.registration ? 'is-invalid' : ''}`} name="registration" value={this.state.registration} onChange={this.handleChange} />
                              {errors.registration && <div className="invalid-feedback">{errors.registration}</div>}
                         </div>
                         <div className="form-group">
                             <label>Total Marks:</label>
-                            <input type="text" className={`form-control ${errors.totalmarks ? 'is-invalid' : ''}`} name="totalmarks" value={this.state.totalmarks} onChange={this.handleChange} />
+                            <input type="text" placeholder='/600'className={`form-control ${errors.totalmarks ? 'is-invalid' : ''}`} name="totalmarks" value={this.state.totalmarks} onChange={this.handleChange} />
                             {errors.totalmarks && <div className="invalid-feedback">{errors.totalmarks}</div>}
                         </div>
                         </div>
@@ -229,7 +229,7 @@ class App extends Component {
                          <div className="display7">
                         <div className="form-group">
                             <label>Parent Voter ID:</label>
-                            <input type="text" className={`form-control ${errors.voterid ? 'is-invalid' : ''}`} name="voterid" value={this.state.voterid} onChange={this.handleChange} />
+                            <input type="text" placeholder='ex: AZ123W5431'className={`form-control ${errors.voterid ? 'is-invalid' : ''}`} name="voterid" value={this.state.voterid} onChange={this.handleChange} />
                             {errors.voterid && <div className="invalid-feedback">{errors.voterid}</div>}
                         </div>
                         <div className="form-group">
