@@ -43,3 +43,8 @@ input:first-of-type {
 .btnn{
     margin-top: 20px;
 }
+
+.input-group > input {
+
+    width: 90vw;
+}

@@ -71,7 +71,7 @@ class App extends Component {
         event.preventDefault();
         const isValid = this.validateForm();
         if (isValid) {
-            alert('Are you ready to submit?');
+            alert('By confirming you are ready to submit the application there after the changes cannot be made please do re-check and submit the application');
             const registered = {
                 fullName: this.state.fullName,
                 username: this.state.username,
@@ -102,6 +102,7 @@ class App extends Component {
                 totalmarks: '',
                 voterid: '',
                 password: '',
+
                 errors: {}
                 });
             }
@@ -170,22 +171,23 @@ class App extends Component {
                         <div className="display7">
                         <div className="form-group">
                             <label>Full Name:</label>
-                            <input type="text" className={`form-control ${errors.fullName ? 'is-invalid' : ''}`} name="fullName" value={this.state.fullName} onChange={this.handleChange} />
+                            <input type="text" placeholder=''  className={`form-control ${errors.fullName ? 'is-invalid' : ''}`} name="fullName" value={this.state.fullName} onChange={this.handleChange} />
                             {errors.fullName && <div className="invalid-feedback">{errors.fullName}</div>}
                         </div>
                         <div className="form-group">
                             <label>Username:</label>
-                            <input type="text" className={`form-control ${errors.username ? 'is-invalid' : ''}`} name="username" value={this.state.username} onChange={this.handleChange} />
+                            <input type="text" placeholder=""  className={`form-control ${errors.username ? 'is-invalid' : ''}`} name="username" value={this.state.username} onChange={this.handleChange} />
                             {errors.username && <div className="invalid-feedback">{errors.username}</div>}
                         </div>
                         <div className="form-group">
                             <label>Email:</label>
-                            <input type="email" className={`form-control ${errors.email ? 'is-invalid' : ''}`} name="email" value={this.state.email} onChange={this.handleChange} />
-                            {errors.email && <div className='inavalid-feedback'>{errors.email}</div>}
+                            <input type="email" placeholder='email' className={`form-control ${errors.email ? 'is-invalid' : ''}`} name="email" value={this.state.email} onChange={this.handleChange} />
+                            {errors.email && <div className='invalid-feedback'>{errors.email}</div>}
                         </div>
                         <div className="form-group">
                         <label>Phone Number:</label>
-                            <input type="tel" className={`form-control ${errors.phonenumber ? 'is-invalid' : ''}`} name="phonenumber" value={this.state.phonenumber} onChange={this.handleChange} />
+                            
+                            <input type="tel" placeholder='91+' className={`form-control ${errors.phonenumber ? 'is-invalid' : ''}`} name="phonenumber" value={this.state.phonenumber} onChange={this.handleChange} />
                             {errors.phonenumber && <div className="invalid-feedback">{errors.phonenumber}</div>}
                         </div>
                         <div className="form-group">
@@ -237,9 +239,9 @@ class App extends Component {
                         </div>
                         <div className="form-group">
                             <label for="formFile" className="form-label mt-2">Upload Your Aadhar card</label>
-                            <input className={`form-control ${errors.adharcardfile ? 'is-invalid' : ''}`} type="file" id="formFile"/>
+                            <input className={`form-control ${errors.adharcardfile ? 'is-invalid' : ''}`} type="file" id="formFile" name="file" onChange={this.handleChange}/>
                             {errors.adharcardfile && <div className="invalid-feedback">{errors.adharcardfile}</div>}
-                    </div>
+                          </div>
 
                         </div>
                         <div className='btnn'>
