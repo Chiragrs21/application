@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css"
 import axios from 'axios'
 import "./app.css"
@@ -86,8 +87,11 @@ class App extends Component {
                 voterid: this.state.voterid,
                 password: this.state.password
             };
-            axios.post('http://0.0.0.0:4000/app/signup', registered)
-                .then(res => console.log(res.data))
+            axios.post('http://localhost:4000/app/signup', registered)
+            .then(res => {
+                console.log(res.data);
+                this.props.history.push('/success'); // redirect to success page
+            })
                 .catch(err => console.log(err));
             this.setState({
                 fullName: '',
@@ -152,10 +156,10 @@ class App extends Component {
                 errors.password = 'Password must be at least 8 characters long!';
                 isValid = false;
             }
-            if (document.getElementById('formFile').value === '') {
-                errors.adharcardfile = 'Please upload your Aadhar card!';
-                isValid = false;
-            }
+            // if (document.getElementById('formFile').value === '') {
+            //     errors.adharcardfile = 'Please upload your Aadhar card!';
+            //     isValid = false;
+            // }
         
             this.setState({ errors });
             return isValid;
@@ -237,11 +241,13 @@ class App extends Component {
                             <input type="password" className={`form-control ${errors.password ? 'is-invalid' : ''}`} name="password" value={this.state.password} onChange={this.handleChange} />
                             {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label for="formFile" className="form-label mt-2">Upload Your Aadhar card</label>
-                            <input className={`form-control ${errors.adharcardfile ? 'is-invalid' : ''}`} type="file" id="formFile" name="file" onChange={this.handleChange}/>
+                            <input className={`form-control ${errors.adharcardfile ? 'is-invalid' : ''}`} type="file" id="formFile" name="file" accept=".pdf" onChange={this.handleChange}/>
                             {errors.adharcardfile && <div className="invalid-feedback">{errors.adharcardfile}</div>}
                           </div>
+                          <label for="pdf-file">Upload PDF file:</label>
+                         <input type="file" id="pdf-file" name="pdf-file" accept=".pdf" required></input> */}
 
                         </div>
                         <div className='btnn'>
@@ -252,5 +258,5 @@ class App extends Component {
              );
          }
      }
-        export default App;
+     export default withRouter(App);
         

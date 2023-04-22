@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const signuptemplatesCopy = require("../models/Signupmodels");
 const bcrypt = require("bcrypt");
+const bodyParser = require("body-parser");
+const nodemailer = require("nodemailer");
 
 router.post("/signup", async (req, res) => {
   const slatPassword = await bcrypt.genSalt(10);
@@ -32,37 +34,44 @@ router.post("/signup", async (req, res) => {
     });
 });
 
-// router.post("/signup", async (req, res) => {
-//   const body = req.body;
-//   try {
-//     const newImage = await Post.create(body);
-//     newImage.save();
-//     res.status(201).json({ msg: "New image uploaded...!" });
-//   } catch (error) {
-//     res.status(409).json({ message: error.message });
-//   }
-// });
+const app = express();
 
-// router.get("/info/:username", (req, res) => {
-//   signuptemplatesCopy
-//     .find({ username: req.params.username })
-//     .then((result) => {
-//       res.send(result);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/users/:username', (req, res) => {
-//   User.find({ username: req.params.username }, (err, users) => {
-//     if (err) {
-//       console.log(err);
-//       res.status(500).json({ message: 'Internal server error' });
-//     } else {
-//       res.status(200).json(users);
-//     }
-//   });
-// });
+app.post("/send-email", async (req, res) => {
+  const files = req.files;
+
+  if (!files || !files.length) {
+    res.status(400).json({ message: "Please select at least one file." });
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "chiragrs153@gmail.com",
+      pass: "chirag@1234",
+    },
+  });
+
+  const mailOptions = {
+    from: "chiragrs153@gmail.com",
+    to: "chiragrs2003@gmail.com",
+    subject: "Files uploaded",
+    attachments: files.map((file) => ({
+      filename: file.originalname,
+      content: file.buffer,
+    })),
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.json({ message: "Email sent successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to send email." });
+  }
+});
 
 module.exports = router;
